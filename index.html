@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ポートフォリオ</title>
+<meta name="description" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<!--
+  ================================================================
+  内容の編集は  data.js  で行ってください。
+  このファイル（index.html）は見た目とレイアウトの担当です。
+  ================================================================
+-->
+<style>
+  :root{
+    --navy:#1F3A5F;
+    --navy-2:#2c4f7c;
+    --blue:#3E6DA5;
+    --accent:#5b8fd0;
+    --bg:#ffffff;
+    --bg-soft:#f4f7fb;
+    --card:#ffffff;
+    --ink:#1f2430;
+    --muted:#5c6675;
+    --line:#dde5f0;
+    --radius:14px;
+    --maxw:940px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --navy:#0f1c2e;
+      --navy-2:#16283f;
+      --blue:#7ba7dc;
+      --accent:#8fb7e6;
+      --bg:#0e1116;
+      --bg-soft:#141922;
+      --card:#161c26;
+      --ink:#e7ecf3;
+      --muted:#9aa6b6;
+      --line:#26303e;
+    }
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.85;
+    font-size:15px;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--blue);}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px;}
+
+  /* ---------- hero ---------- */
+  header.hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);
+    color:#fff;
+    padding:64px 0 56px;
+  }
+  .hero .company{font-size:13px; color:#a9c1de; letter-spacing:.06em; margin:0 0 10px;}
+  .hero h1{font-size:clamp(30px,6vw,44px); font-weight:700; margin:0 0 8px; letter-spacing:.04em;}
+  .hero .role{font-size:clamp(15px,2.6vw,18px); color:#cfe0f3; margin:0 0 22px;}
+  .contact{display:flex; flex-wrap:wrap; gap:10px;}
+  .contact a{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.22);
+    color:#fff; text-decoration:none;
+    padding:8px 16px; border-radius:999px; font-size:14px;
+    transition:background .2s;
+  }
+  .contact a:hover{background:rgba(255,255,255,.2);}
+
+  /* ---------- sections ---------- */
+  section{padding:56px 0 8px;}
+  section.alt{background:var(--bg-soft); padding-bottom:56px;}
+  h2{
+    font-size:22px; font-weight:700; color:var(--ink);
+    margin:0 0 8px; display:flex; align-items:center; gap:11px;
+  }
+  h2::before{content:""; width:5px; height:22px; background:var(--blue); border-radius:3px;}
+  .sec-note{color:var(--muted); font-size:13.5px; margin:0 0 26px;}
+
+  .lead{margin:0 0 14px; max-width:78ch;}
+  .lead strong{color:var(--blue); font-weight:700;}
+
+  /* ---------- skill cards ---------- */
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;}
+  .card{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:var(--radius); padding:20px 22px;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{transform:translateY(-3px); box-shadow:0 8px 24px rgba(31,58,95,.10);}
+  .card h3{
+    font-size:15.5px; font-weight:700; color:var(--blue);
+    margin:0 0 10px; padding-bottom:9px; border-bottom:1px solid var(--line);
+  }
+  .card ul{margin:0; padding-left:18px;}
+  .card li{margin:5px 0; font-size:14px;}
+  .card li::marker{color:var(--accent);}
+
+  /* ---------- tech ---------- */
+  .tech{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:12px;}
+  .tech-row{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:10px; padding:13px 17px;
+  }
+  .tech-row .k{font-size:12px; color:var(--muted); letter-spacing:.05em; margin-bottom:3px;}
+  .tech-row .v{font-size:14.5px; font-weight:500;}
+
+  /* ---------- works ---------- */
+  .work{
+    background:var(--card); border:1px solid var(--line);
+    border-left:4px solid var(--blue);
+    border-radius:12px; padding:22px 24px; margin-bottom:16px;
+  }
+  .work-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 14px; margin-bottom:6px;}
+  .work-head h3{font-size:18px; font-weight:700; margin:0;}
+  .period{font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums;}
+  .tags{display:flex; flex-wrap:wrap; gap:7px; margin:10px 0 14px;}
+  .tag{
+    font-size:12px; padding:3px 11px; border-radius:999px;
+    background:rgba(62,109,165,.12); color:var(--blue); border:1px solid rgba(62,109,165,.22);
+  }
+  .work ul{margin:0; padding-left:18px;}
+  .work li{margin:5px 0; font-size:14.2px;}
+  .work li::marker{color:var(--accent);}
+
+  footer{
+    background:var(--navy); color:#a9c1de;
+    text-align:center; padding:30px 20px; margin-top:56px; font-size:13px;
+  }
+  footer a{color:#cfe0f3;}
+  footer p{margin:4px 0;}
+
+  .error{
+    max-width:640px; margin:80px auto; padding:24px 26px;
+    border:1px solid var(--line); border-radius:12px; background:var(--bg-soft);
+  }
+  .error h2{margin-bottom:12px;}
+  .error code{background:rgba(62,109,165,.12); padding:2px 6px; border-radius:4px;}
+
+  @media (max-width:600px){
+    body{font-size:14.5px;}
+    header.hero{padding:46px 0 40px;}
+    section{padding:42px 0 8px;}
+    .work{padding:18px 18px;}
+  }
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  var D = window.PORTFOLIO;
+  var app = document.getElementById("app");
+
+  if (!D) {
+    app.innerHTML =
+      '<div class="error"><h2>データを読み込めませんでした</h2>' +
+      '<p><code>data.js</code> が同じフォルダにあるか、書き方（カンマや引用符）に間違いがないか確認してください。</p></div>';
+    return;
+  }
+
+  /* --- 文字をそのまま安全に表示するための処理 --- */
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  /* --- **文字** を強調に変換 --- */
+  function rich(s) {
+    return esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  }
+  function list(items) {
+    return (items || []).map(function (i) { return "<li>" + rich(i) + "</li>"; }).join("");
+  }
+
+  /* ---------- ページ設定 ---------- */
+  var meta = D.meta || {};
+  if (meta.title) document.title = meta.title;
+  if (meta.description) {
+    var m = document.querySelector('meta[name="description"]');
+    if (m) m.setAttribute("content", meta.description);
+  }
+
+  var html = "";
+
+  /* ---------- ヘッダー ---------- */
+  var h = D.hero || {};
+  var contact = "";
+  if (h.email) {
+    contact += '<a href="mailto:' + esc(h.email) + '"><span class="label">MAIL</span>' + esc(h.email) + "</a>";
+  }
+  if (h.tel) {
+    contact += '<a href="tel:' + esc(h.tel.replace(/[^0-9+]/g, "")) + '"><span class="label">TEL</span>' + esc(h.tel) + "</a>";
+  }
+  html +=
+    '<header class="hero"><div class="wrap">' +
+      (h.company ? '<p class="company">' + esc(h.company) + "</p>" : "") +
+      "<h1>" + esc(h.name) + "</h1>" +
+      (h.role ? '<p class="role">' + esc(h.role) + "</p>" : "") +
+      (contact ? '<div class="contact">' + contact + "</div>" : "") +
+    "</div></header>";
+
+  /* ---------- プロフィール ---------- */
+  if (D.profile && D.profile.length) {
+    html +=
+      '<section><div class="wrap"><h2>プロフィール</h2>' +
+      D.profile.map(function (p) { return '<p class="lead">' + rich(p) + "</p>"; }).join("") +
+      "</div></section>";
+  }
+
+  /* ---------- できること ---------- */
+  if (D.skills && D.skills.length) {
+    html +=
+      '<section class="alt"><div class="wrap"><h2>分野別スキルセット</h2>' +
+      (D.skillsNote ? '<p class="sec-note">' + esc(D.skillsNote) + "</p>" : "") +
+      '<div class="cards">' +
+      D.skills.map(function (s) {
+        return '<div class="card"><h3>' + esc(s.title) + "</h3><ul>" + list(s.items) + "</ul></div>";
+      }).join("") +
+      "</div></div></section>";
+  }
+
+  /* ---------- 実績 ---------- */
+  if (D.works && D.works.length) {
+    html +=
+      '<section class="alt"><div class="wrap"><h2>実績</h2>' +
+      (D.worksNote ? '<p class="sec-note">' + esc(D.worksNote) + "</p>" : "") +
+      D.works.map(function (w) {
+        var tags = "";
+        if (w.role) tags += '<span class="tag role">' + esc(w.role) + "</span>";
+        (w.tags || []).forEach(function (t) { tags += '<span class="tag">' + esc(t) + "</span>"; });
+        return '<div class="work">' +
+            '<div class="work-head"><h3>' + esc(w.title) + "</h3>" +
+            (w.period ? '<span class="period">' + esc(w.period) + "</span>" : "") +
+            "</div>" +
+            (tags ? '<div class="tags">' + tags + "</div>" : "") +
+            "<ul>" + list(w.items) + "</ul>" +
+          "</div>";
+      }).join("") +
+      "</div></section>";
+  }
+
+  /* ---------- フッター ---------- */
+  var f = D.footer || {};
+  var msg = f.message ? esc(f.message) : "";
+  if (msg && h.email) {
+    msg += ' <a href="mailto:' + esc(h.email) + '">' + esc(h.email) + "</a>";
+  }
+  html +=
+    '<footer><div class="wrap">' +
+      (msg ? "<p>" + msg + "</p>" : "") +
+      (f.copyright ? "<p>" + esc(f.copyright) + "</p>" : "") +
+    "</div></footer>";
+
+  app.innerHTML = html;
+})();
+</script>
+
+</body>
+</html>
